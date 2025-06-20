@@ -13,7 +13,7 @@ export const recipeQuerySchema = Joi.object({
 }).optional();
 
 export const recipeParamsSchema = Joi.object({
-  id: Joi.string().required().messages({
+  id: Joi.string().trim().required().messages({
     "string.base": `"id" must be a string`,
     "any.required": `"id" is required`,
   }),
