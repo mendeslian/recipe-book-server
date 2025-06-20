@@ -3,7 +3,7 @@ import { ObjectSchema } from "joi";
 
 export const validateQuery = (schema: ObjectSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.query, { abortEarly: true });
+    const { error } = schema.validate(req.query);
     if (error) {
       return next(error);
     }
@@ -13,7 +13,7 @@ export const validateQuery = (schema: ObjectSchema) => {
 
 export const validateParams = (schema: ObjectSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.params, { abortEarly: true });
+    const { error } = schema.validate(req.params);
     if (error) {
       return next(error);
     }
