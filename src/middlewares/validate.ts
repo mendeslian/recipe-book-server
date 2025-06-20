@@ -3,9 +3,9 @@ import { ObjectSchema } from "joi";
 
 export const validateQuery = (schema: ObjectSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.query);
+    const { error } = schema.validate(req.query, { abortEarly: true });
     if (error) {
-      return res.status(400).json({ error: error.details[0].message });
+      return next(error);
     }
     next();
   };
@@ -13,9 +13,9 @@ export const validateQuery = (schema: ObjectSchema) => {
 
 export const validateParams = (schema: ObjectSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.params);
+    const { error } = schema.validate(req.params, { abortEarly: true });
     if (error) {
-      return res.status(400).json({ error: error.details[0].message });
+      return next(error);
     }
     next();
   };
