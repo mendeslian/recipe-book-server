@@ -6,8 +6,6 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.error("Error:", err);
-
   if (err.isJoi) {
     return res.status(400).json({ error: err.details[0].message });
   }

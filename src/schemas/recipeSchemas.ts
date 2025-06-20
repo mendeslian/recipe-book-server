@@ -10,11 +10,7 @@ export const recipeQuerySchema = Joi.object({
   area: Joi.string().messages({
     "string.base": `"area" must be a string`,
   }),
-})
-  .or("ingredient", "category", "area")
-  .messages({
-    "object.missing": `At least one of 'ingredient', 'category' or 'area' must be provided`,
-  });
+}).optional();
 
 export const recipeParamsSchema = Joi.object({
   id: Joi.string().required().messages({
